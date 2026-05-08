@@ -2,46 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV, SITE } from "@/lib/site";
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-  const solid = scrolled || open || !isHome;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
-        solid
-          ? "bg-white/95 backdrop-blur shadow-[0_1px_0_rgba(0,0,0,.06)]"
-          : "bg-white/0 text-white"
-      }`}
-    >
+    <header className="fixed top-0 inset-x-0 z-40 bg-white/95 backdrop-blur shadow-[0_1px_0_rgba(0,0,0,.06)]">
       <div className="container-x flex h-[72px] items-center justify-between">
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className={`relative h-9 w-9 grid place-items-center rounded-md ${solid ? "bg-brand" : "bg-white/15 backdrop-blur"} transition`}>
+          <span className="relative h-9 w-9 grid place-items-center rounded-md bg-brand transition">
             <span className="text-white font-black text-[15px] tracking-tight">KW</span>
           </span>
           <span className="flex flex-col leading-tight">
-            <span className={`font-bold text-base sm:text-[17px] ${solid ? "text-ink" : "text-white"}`}>
+            <span className="font-bold text-base sm:text-[17px] text-ink">
               경우정밀
             </span>
-            <span className={`text-[10px] sm:text-[11px] tracking-[0.18em] font-semibold ${solid ? "text-brand" : "text-white/80"}`}>
+            <span className="text-[10px] sm:text-[11px] tracking-[0.18em] font-semibold text-brand">
               KYUNGWOO PRECISION
             </span>
           </span>
@@ -52,9 +34,7 @@ export default function Header() {
             <div key={item.label} className="group relative">
               <Link
                 href={item.href}
-                className={`px-4 py-2.5 text-[15px] font-semibold rounded-md transition ${
-                  solid ? "text-ink hover:text-brand" : "text-white hover:text-white"
-                }`}
+                className="px-4 py-2.5 text-[15px] font-semibold rounded-md transition text-ink hover:text-brand"
               >
                 {item.label}
               </Link>
@@ -78,7 +58,7 @@ export default function Header() {
         <div className="hidden lg:flex items-center gap-3">
           <a
             href={`tel:${SITE.contact.phone}`}
-            className={`text-sm font-bold tracking-tight ${solid ? "text-ink" : "text-white"}`}
+            className="text-sm font-bold tracking-tight text-ink"
           >
             {SITE.contact.phone}
           </a>
@@ -90,9 +70,7 @@ export default function Header() {
         <button
           aria-label="메뉴 열기"
           onClick={() => setOpen((v) => !v)}
-          className={`lg:hidden grid place-items-center w-10 h-10 rounded-md ${
-            solid ? "text-ink" : "text-white"
-          }`}
+          className="lg:hidden grid place-items-center w-10 h-10 rounded-md text-ink"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? <path d="M6 6l12 12M18 6L6 18" /> : <><path d="M3 6h18" /><path d="M3 12h18" /><path d="M3 18h18" /></>}
