@@ -28,9 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className="min-h-screen bg-slate-50 text-ink antialiased">
+      <body className="min-h-screen bg-white text-ink antialiased">
         <Header />
-        <main className="pt-[72px]">{children}</main>
+        <main className="pt-[68px] lg:pt-[108px]">{children}</main>
         <Footer />
         <FloatingActions />
       </body>

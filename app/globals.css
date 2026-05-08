@@ -5,10 +5,15 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
 :root {
-  --bg: #f8fafc;
-  --fg: #0f172a;
-  --brand: #1e5cb8;
-  --brand-dark: #14478f;
+  --bg: #ffffff;
+  --bg-alt: #f5f6f8;
+  --fg: #0b1220;
+  --fg-soft: #3b4658;
+  --fg-muted: #6b7280;
+  --line: #e5e7eb;
+  --line-strong: #cbd2db;
+  --brand: #0f3a82;
+  --brand-dark: #0a2a60;
 }
 
 html, body {
@@ -18,6 +23,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  letter-spacing: -0.005em;
 }
 
 * { box-sizing: border-box; }
@@ -29,50 +35,71 @@ img { user-select: none; -webkit-user-drag: none; }
     @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
   }
   .section {
-    @apply py-16 sm:py-20 lg:py-28;
+    @apply py-20 sm:py-24 lg:py-32;
   }
-  .h-eyebrow {
-    @apply inline-block text-xs sm:text-sm font-semibold tracking-[0.2em] text-brand uppercase;
+
+  .section-label {
+    @apply inline-flex items-center gap-2.5 text-[12px] sm:text-[13px] font-semibold tracking-[0.02em] text-brand;
   }
-  .h-title {
-    @apply mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink;
+  .section-label::before {
+    content: "";
+    @apply inline-block h-[1px] w-7 bg-brand;
   }
-  .h-sub {
-    @apply mt-4 text-base sm:text-lg text-ink-soft leading-relaxed max-w-3xl;
+
+  .section-title {
+    @apply mt-4 text-[28px] sm:text-[34px] lg:text-[40px] font-bold tracking-[-0.02em] text-ink leading-[1.25];
   }
+  .section-desc {
+    @apply mt-5 text-[15px] sm:text-base text-ink-soft leading-[1.75] max-w-3xl;
+  }
+
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition;
+    @apply inline-flex items-center justify-center gap-2 rounded-[2px] px-6 py-[14px] text-[14px] font-semibold transition-colors;
   }
   .btn-primary {
     @apply btn bg-brand text-white hover:bg-brand-dark;
   }
   .btn-outline {
-    @apply btn border border-slate-300 text-ink hover:border-brand hover:text-brand;
+    @apply btn border border-slate-300 text-ink hover:border-brand hover:text-brand bg-white;
   }
+  .btn-ghost {
+    @apply btn text-ink hover:text-brand;
+  }
+
   .card {
-    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md;
+    @apply rounded-[4px] border border-slate-200 bg-white transition;
   }
+
   .input {
-    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20;
+    @apply w-full rounded-[2px] border border-slate-300 bg-white px-3.5 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-1 focus:ring-brand/30;
   }
+
+  /* 호환용 */
+  .h-eyebrow { @apply section-label; }
+  .h-title { @apply section-title; }
+  .h-sub { @apply section-desc; }
 }
 
 @layer utilities {
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image:
-      radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-    background-size: 3px 3px;
-    mix-blend-mode: overlay;
+  .info-row {
+    @apply flex border-b border-slate-200 py-3.5 text-[14px];
+  }
+  .info-row dt {
+    @apply w-24 sm:w-28 shrink-0 text-ink-muted font-medium;
+  }
+  .info-row dd {
+    @apply text-ink font-semibold flex-1;
   }
 }
 
-/* Subtle marquee */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@keyframes heroZoom {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
 }
-.marquee-track { animation: marquee 30s linear infinite; }
+.animate-zoom { animation: heroZoom 9s ease-out forwards; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeUp { animation: fadeUp .9s cubic-bezier(.22,.7,.27,1) both; }

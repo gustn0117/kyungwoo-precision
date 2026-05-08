@@ -2,37 +2,40 @@ import { PROCESS_STEPS } from "@/lib/site";
 
 export default function ProcessFlow() {
   return (
-    <section className="section bg-slate-50">
+    <section className="section bg-white">
       <div className="container-x">
-        <div className="text-center max-w-3xl mx-auto">
-          <span className="h-eyebrow">One-Stop Process</span>
-          <h2 className="h-title">
-            소재 절단부터 출고까지,
-            <br />
-            <span className="text-brand">하나의 프로세스</span>로 완성합니다
+        <div className="max-w-3xl">
+          <span className="section-label">일관 공정</span>
+          <h2 className="section-title">
+            소재 절단부터 출고까지<br />
+            <span className="text-brand">하나의 프로세스</span>로 완성합니다.
           </h2>
-          <p className="h-sub mx-auto text-center">
-            경우정밀은 사내 24대의 가공설비와 6대의 정밀 연마기, ZEISS 3차원 측정기를 보유하고
-            있으며, 시화공단 내 20년 이상 협력해온 열처리·도금 협력사와 함께 모든 공정을 한 번에 해결합니다.
+          <p className="section-desc">
+            사내 24대의 가공설비와 6대의 정밀 연마기, ZEISS 3차원 측정기를 보유하고 있으며,
+            시화공단 내 20년 이상 협력해 온 열처리·도금 협력사와 함께 모든 공정을 한 번에 해결합니다.
           </p>
         </div>
 
-        <div className="mt-16 relative">
-          <div className="hidden md:block absolute top-[34px] left-[5%] right-[5%] h-[2px] bg-gradient-to-r from-transparent via-brand to-transparent" />
-          <ol className="relative grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-y-10 gap-x-3">
+        <div className="mt-14 lg:mt-20 border-t border-slate-200">
+          <ol className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7">
             {PROCESS_STEPS.map((s, i) => (
-              <li key={s.key} className="relative flex flex-col items-center text-center px-1">
-                <div className="relative grid place-items-center w-[68px] h-[68px] rounded-full bg-white border-2 border-brand shadow-sm">
-                  <span className="text-brand font-black text-lg">0{i + 1}</span>
+              <li
+                key={s.key}
+                className="relative border-b sm:border-b-0 border-r border-slate-200 last:border-r-0 px-5 py-7 sm:py-9"
+              >
+                <div className="text-[11px] font-semibold tracking-[0.04em] text-brand tabular-nums">
+                  STEP {String(i + 1).padStart(2, "0")}
                 </div>
-                <div className="mt-4 text-sm sm:text-base font-bold text-ink">{s.label}</div>
-                <p className="mt-1 text-[12px] sm:text-[13px] text-ink-muted leading-snug">
+                <div className="mt-3 text-[16px] sm:text-[17px] font-bold text-ink leading-snug">
+                  {s.label}
+                </div>
+                <p className="mt-2 text-[12.5px] sm:text-[13px] text-ink-muted leading-[1.65]">
                   {s.desc}
                 </p>
                 {i < PROCESS_STEPS.length - 1 && (
-                  <span className="hidden md:block absolute top-[26px] -right-3 text-brand">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M5 12h14M13 5l7 7-7 7" />
+                  <span className="hidden lg:flex absolute -right-[7px] top-[34px] z-10 w-[14px] h-[14px] items-center justify-center bg-white text-slate-400">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M9 6l6 6-6 6" />
                     </svg>
                   </span>
                 )}

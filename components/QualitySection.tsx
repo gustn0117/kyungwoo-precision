@@ -4,18 +4,18 @@ import Link from "next/link";
 export default function QualitySection() {
   return (
     <section className="section bg-white">
-      <div className="container-x grid md:grid-cols-5 gap-10 lg:gap-14 items-center">
-        <div className="md:col-span-3 grid grid-cols-6 gap-3">
-          <div className="col-span-4 row-span-2 relative aspect-[4/3] rounded-xl overflow-hidden">
+      <div className="container-x grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="lg:col-span-7 grid grid-cols-6 gap-2 sm:gap-3">
+          <div className="col-span-4 row-span-2 relative aspect-[4/3] overflow-hidden">
             <Image
               src="/equipment/horizontal-lathe-1.jpg"
-              alt="ZEISS 3차원 측정기 환경"
+              alt="ZEISS 3차원 측정 환경"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
-          <div className="col-span-2 relative aspect-square rounded-xl overflow-hidden">
+          <div className="col-span-2 relative aspect-square overflow-hidden">
             <Image
               src="/process/grinding-1.jpg"
               alt="정밀 연마"
@@ -24,7 +24,7 @@ export default function QualitySection() {
               className="object-cover"
             />
           </div>
-          <div className="col-span-2 relative aspect-square rounded-xl overflow-hidden">
+          <div className="col-span-2 relative aspect-square overflow-hidden">
             <Image
               src="/equipment/mct-4.jpg"
               alt="MCT 가공"
@@ -35,34 +35,37 @@ export default function QualitySection() {
           </div>
         </div>
 
-        <div className="md:col-span-2">
-          <span className="h-eyebrow">Quality Assurance</span>
-          <h2 className="h-title">
+        <div className="lg:col-span-5">
+          <span className="section-label">품질 관리</span>
+          <h2 className="section-title">
             ZEISS 3차원 측정으로<br />
             <span className="text-brand">데이터 기반 품질관리</span>
           </h2>
-          <p className="h-sub">
-            스위스 ZEISS사의 CONTURA G2 + CALYPSO 자동 3차원 측정기를 보유하여,
-            제품 가공 후 정밀 측정을 통해 가공 오차를 보정하고, 열처리·연마 등
-            후처리 과정에서의 수치 변화량까지 측정·관리합니다.
+          <p className="section-desc">
+            스위스 ZEISS사의 CONTURA G2 + CALYPSO 자동 3차원 측정기를 보유하여
+            가공 후 정밀 측정·오차 보정뿐 아니라 열처리·연마 등 후공정에서의
+            치수 변화량까지 정량적으로 관리합니다.
           </p>
 
-          <ul className="mt-6 space-y-3">
+          <ul className="mt-8 divide-y divide-slate-200 border-y border-slate-200">
             {[
-              "ZEISS CONTURA G2 자동 3차원 측정기",
-              "수동 3차원 측정기 (STARRETT)",
-              "조도·형상 측정기 (MITUTOYO)",
-              "마이크로미터·캘리퍼·실린더 게이지 일체 보유",
-            ].map((t) => (
-              <li key={t} className="flex items-start gap-3 text-sm text-ink-soft">
-                <span className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
-                <span>{t}</span>
+              ["3차원 측정장비", "ZEISS CONTURA G2 + CALYPSO"],
+              ["수동 3차원 측정기", "STARRETT"],
+              ["조도·형상 측정", "MITUTOYO"],
+              ["정밀 측정공구", "마이크로미터·캘리퍼·실린더 게이지"],
+            ].map(([k, v]) => (
+              <li key={k} className="flex items-center justify-between gap-4 py-3.5 text-[14px]">
+                <span className="text-ink-muted">{k}</span>
+                <span className="font-semibold text-ink text-right">{v}</span>
               </li>
             ))}
           </ul>
 
-          <Link href="/equipment#measuring" className="mt-8 btn-outline">
-            측정기 보유 현황 보기 →
+          <Link href="/equipment#measuring" className="mt-9 btn-outline">
+            측정기 현황 보기
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
           </Link>
         </div>
       </div>
