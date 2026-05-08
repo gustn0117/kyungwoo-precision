@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+:root {
+  --bg: #f8fafc;
+  --fg: #0f172a;
+  --brand: #1e5cb8;
+  --brand-dark: #14478f;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+* { box-sizing: border-box; }
+
+img { user-select: none; -webkit-user-drag: none; }
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
+  }
+  .section {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+  .h-eyebrow {
+    @apply inline-block text-xs sm:text-sm font-semibold tracking-[0.2em] text-brand uppercase;
+  }
+  .h-title {
+    @apply mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink;
+  }
+  .h-sub {
+    @apply mt-4 text-base sm:text-lg text-ink-soft leading-relaxed max-w-3xl;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-outline {
+    @apply btn border border-slate-300 text-ink hover:border-brand hover:text-brand;
+  }
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+}
+
+@layer utilities {
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+  }
+}
+
+/* Subtle marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 30s linear infinite; }
