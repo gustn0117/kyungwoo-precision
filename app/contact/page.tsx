@@ -32,7 +32,7 @@ const FAQ = [
 
 const RESOURCES = [
   { title: "회사 소개서 (PDF)", desc: "경우정밀 종합 소개 자료입니다.", date: "2025.11.21", tag: "PDF" },
-  { title: "설비 보유 현황 표", desc: "CNC, MCT, 연마기 등 27대 설비 상세 리스트.", date: "2025.11", tag: "PDF" },
+  { title: "설비 보유 현황 표", desc: "CNC·MCT·연마기 등 총 38대 설비 상세 리스트.", date: "2025.11", tag: "PDF" },
   { title: "측정 성적서 샘플", desc: "ZEISS CALYPSO 측정 결과 샘플 양식.", date: "2025.10", tag: "Sample" },
   { title: "표준품 카탈로그", desc: "다웰핀·로케이션핀·스토퍼 등 표준품 리스트.", date: "2025.09", tag: "Catalog" },
 ];
@@ -41,19 +41,19 @@ export default function Contact() {
   return (
     <>
       <PageHeader
-        eyebrow="Customer Center"
+        eyebrow="고객센터"
         title="고객센터"
         desc="견적 문의·일반 상담은 아래 양식 또는 전화로 빠르게 연결됩니다."
         bg="/equipment/cnc-lathe-7.jpg"
         breadcrumbs={[{ label: "고객센터" }]}
       />
 
-      <section id="inquiry" className="section bg-slate-50 scroll-mt-[88px]">
-        <div className="container-x grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2">
-            <span className="h-eyebrow">Inquiry</span>
-            <h2 className="h-title">문의하기</h2>
-            <p className="h-sub">
+      <section id="inquiry" className="section bg-slate-50 border-b border-slate-200 scroll-mt-[80px] lg:scroll-mt-[120px]">
+        <div className="container-x grid lg:grid-cols-3 gap-8 lg:gap-10">
+          <div className="lg:col-span-2">
+            <span className="section-label">문의하기</span>
+            <h2 className="section-title">온라인 문의</h2>
+            <p className="section-desc">
               아래 양식을 작성해주시면, 확인 후 빠르게 회신드립니다. 도면 첨부가 필요하면
               이메일 또는 카카오톡으로 직접 전송 부탁드립니다.
             </p>
@@ -62,36 +62,36 @@ export default function Contact() {
             </div>
           </div>
 
-          <aside className="md:sticky lg:top-[88px] self-start space-y-4">
-            <div className="card p-6 bg-brand text-white">
-              <div className="text-xs font-bold tracking-[0.18em] text-brand-100">CALL US</div>
-              <a href={`tel:${SITE.contact.phone}`} className="mt-1 block text-2xl font-black tracking-tight">
+          <aside className="lg:sticky lg:top-[124px] self-start space-y-3">
+            <div className="bg-brand text-white p-6 border-l-2 border-white">
+              <div className="text-[12px] font-semibold tracking-[0.04em] text-white/80">전화 문의</div>
+              <a href={`tel:${SITE.contact.phone}`} className="mt-1.5 block text-[24px] font-bold tracking-[-0.01em] tabular-nums">
                 {SITE.contact.phone}
               </a>
-              <div className="mt-2 text-sm text-brand-100">
-                평일 08:30 - 18:00 (점심 12:00-13:00)
+              <div className="mt-1.5 text-[13px] text-white/75">
+                평일 08:30 - 18:00 (점심 12:00 - 13:00)
               </div>
-              <div className="mt-4 pt-4 border-t border-white/20 space-y-1.5 text-sm">
+              <div className="mt-4 pt-4 border-t border-white/20 space-y-1.5 text-[13.5px]">
                 <div><span className="opacity-70">담당자</span> {SITE.contact.manager}</div>
                 <div><span className="opacity-70">휴대폰</span> <a href={`tel:${SITE.contact.mobile}`} className="font-semibold">{SITE.contact.mobile}</a></div>
                 <div><span className="opacity-70">FAX</span> {SITE.contact.fax}</div>
               </div>
             </div>
 
-            <div className="card p-6 space-y-3">
+            <div className="border border-slate-200 p-6 space-y-4">
               <div>
-                <div className="h-eyebrow">EMAIL</div>
-                <a href={`mailto:${SITE.contact.email}`} className="mt-1 block font-semibold text-ink hover:text-brand break-all">
+                <div className="text-[12px] font-semibold text-brand">이메일</div>
+                <a href={`mailto:${SITE.contact.email}`} className="mt-1.5 block font-semibold text-ink hover:text-brand break-all text-[14px]">
                   {SITE.contact.email}
                 </a>
               </div>
-              <div>
-                <div className="h-eyebrow">ADDRESS</div>
-                <p className="mt-1 text-sm text-ink-soft leading-relaxed">{SITE.address.full}</p>
+              <div className="pt-4 border-t border-slate-200">
+                <div className="text-[12px] font-semibold text-brand">주소</div>
+                <p className="mt-1.5 text-[14px] text-ink-soft leading-relaxed">{SITE.address.full}</p>
               </div>
             </div>
 
-            <a href={SITE.contact.kakaoUrl} className="card p-6 block bg-yellow-300/30 hover:bg-yellow-300/50 transition">
+            <a href={SITE.contact.kakaoUrl} className="border border-slate-200 p-6 block bg-yellow-300/20 hover:bg-yellow-300/40 transition-colors">
               <div className="flex items-center gap-3">
                 <span className="grid place-items-center w-12 h-12 rounded-full bg-[#FEE500] text-[#3C1E1E]">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -111,8 +111,8 @@ export default function Contact() {
       {/* FAQ */}
       <section className="section bg-white">
         <div className="container-x">
-          <span className="h-eyebrow">FAQ</span>
-          <h2 className="h-title">자주 묻는 질문</h2>
+          <span className="section-label">자주 묻는 질문</span>
+          <h2 className="section-title">자주 묻는 질문 (FAQ)</h2>
 
           <div className="mt-8 grid md:grid-cols-2 gap-4">
             {FAQ.map((f, i) => (
@@ -136,11 +136,11 @@ export default function Contact() {
       </section>
 
       {/* Resources / 자료실 */}
-      <section id="library" className="section bg-slate-50 scroll-mt-[88px]">
+      <section id="library" className="section bg-slate-50 border-t border-slate-200 scroll-mt-[80px] lg:scroll-mt-[120px]">
         <div className="container-x">
-          <span className="h-eyebrow">Library</span>
-          <h2 className="h-title">자료실</h2>
-          <p className="h-sub">
+          <span className="section-label">자료실</span>
+          <h2 className="section-title">자료실</h2>
+          <p className="section-desc">
             회사 소개서, 설비 현황, 표준품 카탈로그 등 자료가 필요하신 경우 견적 문의 또는 이메일로 요청해주세요.
           </p>
 

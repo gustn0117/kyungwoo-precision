@@ -4,9 +4,9 @@ import { EQUIPMENT_LIST } from "@/lib/site";
 
 const SHOWCASE = [
   { src: "/equipment/cnc-lathe-2.jpg", label: "CNC 선반", count: 13 },
-  { src: "/equipment/mct-2.jpg", label: "머시닝 센터", count: 7 },
-  { src: "/factory/horizontal-mct.jpg", label: "호리젠탈 MCT", count: 1 },
-  { src: "/equipment/grinder-flat.jpg", label: "연마기", count: 6 },
+  { src: "/equipment/mct-2.jpg", label: "머시닝 센터 (수직 7 + 호리 1)", count: 8 },
+  { src: "/equipment/horizontal-lathe-3.jpg", label: "범용 선반·밀링", count: 8 },
+  { src: "/equipment/grinder-flat.jpg", label: "연마기 (원통 3 + 평면 3)", count: 6 },
 ];
 
 export default function EquipmentPreview() {
@@ -17,7 +17,7 @@ export default function EquipmentPreview() {
           <div>
             <span className="section-label !text-brand-300 before:!bg-brand-300">보유 설비</span>
             <h2 className="mt-4 text-[28px] sm:text-[34px] lg:text-[40px] font-bold leading-[1.25] tracking-[-0.02em] text-white">
-              총 27대의 가공·측정 설비로<br />
+              총 38대의 가공·측정 설비로<br />
               <span className="text-brand-300">정밀도와 생산성을 동시에 확보</span>
             </h2>
           </div>
@@ -58,13 +58,13 @@ export default function EquipmentPreview() {
 
         {/* 전체 설비 한눈에 보기 */}
         <div className="mt-14 border-t border-white/15">
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 divide-x divide-white/10">
+          <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 divide-x divide-white/10">
             {EQUIPMENT_LIST.map((e) => (
-              <div key={e.name} className="px-4 py-5 lg:py-6 border-b lg:border-b-0 border-white/10">
-                <div className="text-[28px] sm:text-[30px] font-bold tabular-nums text-white leading-none">
+              <div key={e.name} className="px-3 sm:px-4 py-5 lg:py-6 border-b lg:border-b-0 border-white/10">
+                <div className="text-[24px] sm:text-[28px] font-bold tabular-nums text-white leading-none">
                   {e.count}
                 </div>
-                <div className="mt-2 text-[11.5px] sm:text-[12px] font-semibold text-white/65 leading-snug">
+                <div className="mt-2 text-[11px] sm:text-[12px] font-semibold text-white/65 leading-snug">
                   {e.name}
                 </div>
               </div>

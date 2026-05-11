@@ -55,7 +55,7 @@ export default function Hero() {
             <span className="font-extrabold">경우정밀</span>
           </h1>
           <p className="mt-6 text-[15px] sm:text-[17px] text-white/85 leading-[1.8] max-w-xl font-medium">
-            CNC·머시닝부터 열처리·연마·3차원 측정까지,
+            CNC·머시닝 가공부터 열처리·연마·도금까지,
             <br className="hidden sm:block" />
             모든 정밀가공 공정을 한 곳에서 책임집니다.
           </p>

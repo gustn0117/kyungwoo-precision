@@ -11,8 +11,8 @@ export default function ProcessFlow() {
             <span className="text-brand">하나의 프로세스</span>로 완성합니다.
           </h2>
           <p className="section-desc">
-            사내 24대의 가공설비와 6대의 정밀 연마기, ZEISS 3차원 측정기를 보유하고 있으며,
-            시화공단 내 20년 이상 협력해 온 열처리·도금 협력사와 함께 모든 공정을 한 번에 해결합니다.
+            사내 38대의 가공 설비와 ZEISS 3차원 측정기를 보유하고 있으며, 시화공단 내 20년 이상
+            협력해 온 열처리·도금 협력사와 함께 모든 공정을 한 번에 해결합니다.
           </p>
         </div>
 

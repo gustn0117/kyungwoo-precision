@@ -12,7 +12,7 @@ const TABS = [
 export default function AboutTabs() {
   const path = usePathname();
   return (
-    <div className="border-b border-slate-200 bg-white sticky top-[72px] z-20">
+    <div className="border-b border-slate-200 bg-white sticky top-[68px] lg:top-[108px] z-20">
       <div className="container-x">
         <ul className="flex overflow-x-auto -mx-1">
           {TABS.map((t) => {
@@ -21,7 +21,7 @@ export default function AboutTabs() {
               <li key={t.href} className="px-1">
                 <Link
                   href={t.href}
-                  className={`block px-4 sm:px-6 py-4 text-sm sm:text-base font-semibold whitespace-nowrap border-b-2 transition ${
+                  className={`block px-4 sm:px-6 py-4 text-[13.5px] sm:text-[14.5px] font-semibold whitespace-nowrap border-b-2 transition-colors ${
                     active
                       ? "border-brand text-brand"
                       : "border-transparent text-ink-muted hover:text-ink"

@@ -42,7 +42,7 @@ export default function CompanyOverview() {
           <span className="section-label">회사소개</span>
           <h2 className="section-title">
             품질·납기·합리적인 가격,<br />
-            <span className="text-brand">절대 준수의 30년</span>
+            <span className="text-brand">절대 준수의 33년</span>
           </h2>
           <p className="section-desc">
             경우정밀은 1993년 설립 이래 CNC·머시닝·수동선반·밀링을 활용해
@@ -56,7 +56,7 @@ export default function CompanyOverview() {
             <Row k="대표자" v={SITE.ceo} />
             <Row k="설립일자" v={SITE.founded} />
             <Row k="임직원" v={`총 ${SITE.employees}명`} />
-            <Row k="보유설비" v={`총 ${SITE.equipmentCount}대 (가공 24, 측정 외 3)`} />
+            <Row k="보유설비" v={`총 ${SITE.equipmentCount}대 (${SITE.equipmentBreakdown})`} />
             <Row k="주요사업" v={SITE.business} />
           </dl>
 

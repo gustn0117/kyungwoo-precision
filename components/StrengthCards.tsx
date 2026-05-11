@@ -61,7 +61,7 @@ export default function StrengthCards() {
 
 const STAT_ITEMS = [
   { label: "설립", value: "1993", suffix: "년" },
-  { label: "정밀가공 노하우", value: "30", suffix: "년" },
-  { label: "가공·측정 설비", value: "27", suffix: "대" },
-  { label: "임직원", value: "30", suffix: "명" },
+  { label: "정밀가공 노하우", value: "33", suffix: "년" },
+  { label: "가공·측정 설비", value: "38", suffix: "대" },
+  { label: "임직원", value: "33", suffix: "명" },
 ];
