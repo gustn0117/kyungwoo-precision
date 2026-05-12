@@ -51,7 +51,7 @@ export default function QualitySection() {
             {[
               ["3차원 측정장비", "ZEISS CONTURA G2 + CALYPSO"],
               ["수동 3차원 측정기", "STARRETT"],
-              ["조도·형상 측정", "MITUTOYO"],
+              ["형상측정기 (CV-3200)", "MITUTOYO"],
               ["정밀 측정공구", "마이크로미터·캘리퍼·실린더 게이지"],
             ].map(([k, v]) => (
               <li key={k} className="flex items-center justify-between gap-4 py-3.5 text-[14px]">

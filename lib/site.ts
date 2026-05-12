@@ -181,8 +181,6 @@ export const EQUIPMENT_LIST = [
 export const MEASURING_LIST = [
   { name: "3차원 측정장비", maker: "ZEISS CONTURA G2 + CALYPSO", note: "스위스 ZEISS / 자동 측정", featured: true },
   { name: "수동 3차원 측정기", maker: "STARRETT", note: "" },
-  { name: "조도 측정기", maker: "MITUTOYO", note: "" },
-  { name: "현미경 (EGVM-35B)", maker: "VIDEO MICRO SCOPE SYSTEM", note: "" },
   { name: "형상측정기 (CV-3200)", maker: "MITUTOYO", note: "" },
   { name: "마이크로미터 / 캘리퍼스", maker: "MITUTOYO", note: "8~100mm 다양 보유" },
   { name: "실린더 게이지", maker: "MITUTOYO", note: "0~25mm" },
