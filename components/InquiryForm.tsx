@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SITE } from "@/lib/site";
 
 type FormState = {
@@ -8,11 +8,15 @@ type FormState = {
   category: string; subject: string; message: string; agree: boolean;
 };
 
+const EMPTY: FormState = {
+  name: "", company: "", phone: "", email: "",
+  category: "정밀 가공 견적", subject: "", message: "", agree: false,
+};
+
 export default function InquiryForm() {
-  const [f, setF] = useState<FormState>({
-    name: "", company: "", phone: "", email: "",
-    category: "정밀 가공 견적", subject: "", message: "", agree: false,
-  });
+  const [f, setF] = useState<FormState>(EMPTY);
+  const [file, setFile] = useState<File | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -22,7 +26,12 @@ export default function InquiryForm() {
     setF((p) => ({ ...p, [k]: v as never }));
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const reset = () => {
+    setF(EMPTY); setFile(null); setDone(false); setErr(null);
+    if (fileRef.current) fileRef.current.value = "";
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErr(null);
     if (!f.name || !f.phone || !f.message) {
@@ -33,24 +42,33 @@ export default function InquiryForm() {
       setErr("개인정보 수집 및 이용에 동의해주세요.");
       return;
     }
+    if (file && file.size > 20 * 1024 * 1024) {
+      setErr("첨부파일은 20MB 이하만 업로드할 수 있습니다.");
+      return;
+    }
     setSubmitting(true);
-
-    const subject = encodeURIComponent(`[홈페이지 문의] ${f.category} - ${f.subject || f.name}`);
-    const body = encodeURIComponent(
-      `■ 분류: ${f.category}\n` +
-      `■ 성함: ${f.name}\n` +
-      `■ 회사: ${f.company || "-"}\n` +
-      `■ 연락처: ${f.phone}\n` +
-      `■ 이메일: ${f.email || "-"}\n` +
-      `■ 제목: ${f.subject || "-"}\n` +
-      `\n${f.message}\n`
-    );
-
-    setTimeout(() => {
-      window.location.href = `mailto:${SITE.contact.email}?subject=${subject}&body=${body}`;
-      setSubmitting(false);
+    try {
+      const fd = new FormData();
+      fd.append("name", f.name);
+      fd.append("company", f.company);
+      fd.append("phone", f.phone);
+      fd.append("email", f.email);
+      fd.append("category", f.category);
+      fd.append("subject", f.subject);
+      fd.append("message", f.message);
+      if (file) fd.append("file", file);
+      const r = await fetch("/api/inquiry", { method: "POST", body: fd });
+      if (!r.ok) {
+        const j = await r.json().catch(() => ({}));
+        setErr(j.error || "전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+        return;
+      }
       setDone(true);
-    }, 500);
+    } catch {
+      setErr("전송에 실패했습니다. 네트워크 상태를 확인해주세요.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (done) {
@@ -61,18 +79,13 @@ export default function InquiryForm() {
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </div>
-        <h3 className="mt-5 text-xl font-bold text-ink">메일 클라이언트가 열렸습니다</h3>
+        <h3 className="mt-5 text-xl font-bold text-ink">문의가 정상 접수되었습니다</h3>
         <p className="mt-2 text-sm text-ink-muted">
-          메일 발송 후, 빠른 시일 내에 담당자가 연락드리겠습니다.
+          확인 후 빠른 시일 내에 담당자가 연락드리겠습니다.
           <br />
           급하신 경우 <a href={`tel:${SITE.contact.phone}`} className="text-brand font-semibold">{SITE.contact.phone}</a>으로 전화 주세요.
         </p>
-        <button
-          onClick={() => { setDone(false); setF({ name: "", company: "", phone: "", email: "", category: "정밀 가공 견적", subject: "", message: "", agree: false }); }}
-          className="mt-6 btn-outline"
-        >
-          새 문의 작성
-        </button>
+        <button onClick={reset} className="mt-6 btn-outline">새 문의 작성</button>
       </div>
     );
   }
@@ -118,48 +131,57 @@ export default function InquiryForm() {
           onChange={handle("message")}
           rows={7}
           className="input resize-y"
-          placeholder="가공 부품 종류, 수량, 납기 희망일, 첨부 도면 유무 등을 자유롭게 작성해주세요."
+          placeholder="가공 부품 종류, 수량, 납기 희망일 등을 자유롭게 작성해주세요."
         />
       </Field>
 
+      <div className="block">
+        <span className="text-sm font-semibold text-ink">첨부파일</span>
+        <div className="mt-1.5">
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/*,application/pdf,.dwg,.dxf,.zip,.xlsx,.xls,.doc,.docx,.hwp,.step,.stp,.igs,.iges"
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            className="block w-full text-sm text-ink-soft file:mr-3 file:rounded-md file:border-0 file:bg-brand/10 file:text-brand file:font-semibold file:px-4 file:py-2 file:cursor-pointer hover:file:bg-brand/20"
+          />
+          <p className="mt-1.5 text-xs text-ink-muted">
+            {file ? `선택됨: ${file.name} (${(file.size / 1024 / 1024).toFixed(1)}MB)` : "도면(PDF·DWG 등)·사진 1개, 20MB 이하"}
+            {file && (
+              <button
+                type="button"
+                onClick={() => { setFile(null); if (fileRef.current) fileRef.current.value = ""; }}
+                className="ml-2 text-red-600 underline"
+              >
+                삭제
+              </button>
+            )}
+          </p>
+        </div>
+      </div>
+
+      {/* 허니팟 (스팸 차단용 — 사용자에게 보이지 않음) */}
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
       <label className="flex items-start gap-2.5 cursor-pointer text-sm text-ink-soft">
-        <input
-          type="checkbox"
-          checked={f.agree}
-          onChange={handle("agree")}
-          className="mt-0.5 w-4 h-4 accent-brand"
-        />
+        <input type="checkbox" checked={f.agree} onChange={handle("agree")} className="mt-0.5 w-4 h-4 accent-brand" />
         <span>
-          개인정보 수집·이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용되며,
-          답변 완료 후 즉시 파기됩니다.
+          개인정보 수집·이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용되며, 답변 완료 후 파기됩니다.
         </span>
       </label>
 
       {err && (
-        <div className="rounded-lg bg-red-50 text-red-700 text-sm px-4 py-3 border border-red-100">
-          {err}
-        </div>
+        <div className="rounded-lg bg-red-50 text-red-700 text-sm px-4 py-3 border border-red-100">{err}</div>
       )}
 
       <div className="flex flex-col sm:flex-row gap-3">
-        <button
-          type="submit"
-          disabled={submitting}
-          className="btn-primary flex-1 justify-center disabled:opacity-60"
-        >
-          {submitting ? "처리 중..." : "문의 보내기"}
+        <button type="submit" disabled={submitting} className="btn-primary flex-1 justify-center disabled:opacity-60">
+          {submitting ? "전송 중..." : "문의 보내기"}
         </button>
-        <a
-          href={`tel:${SITE.contact.phone}`}
-          className="btn-outline flex-1 justify-center"
-        >
+        <a href={`tel:${SITE.contact.phone}`} className="btn-outline flex-1 justify-center">
           전화 상담 ({SITE.contact.phone})
         </a>
       </div>
-
-      <p className="text-xs text-ink-muted">
-        ※ 도면 등 첨부파일이 필요하신 경우, 하단 이메일 또는 카카오톡으로 직접 보내주세요.
-      </p>
     </form>
   );
 }

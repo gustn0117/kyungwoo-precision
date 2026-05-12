@@ -54,8 +54,8 @@ export default function Contact() {
             <span className="section-label">문의하기</span>
             <h2 className="section-title">온라인 문의</h2>
             <p className="section-desc">
-              아래 양식을 작성해주시면, 확인 후 빠르게 회신드립니다. 도면 첨부가 필요하면
-              이메일 또는 카카오톡으로 직접 전송 부탁드립니다.
+              아래 양식을 작성해주시면, 확인 후 빠르게 회신드립니다. 도면·사진 등은
+              양식의 첨부파일로 함께 보내실 수 있습니다.
             </p>
             <div className="mt-8">
               <InquiryForm />

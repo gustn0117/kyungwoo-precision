@@ -1,6 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import ProductImageCarousel from "@/components/ProductImageCarousel";
+import ProductGallery, { GalleryItem } from "@/components/ProductGallery";
 import { PRODUCT_CATEGORIES } from "@/lib/site";
 import { getProductImagesBySection } from "@/lib/productImages";
 
@@ -26,7 +27,12 @@ export default async function Products() {
     const rows = bySection[id];
     return rows && rows.length ? rows.map((r) => r.url) : [...fallback];
   };
-  const gallery = imagesFor("gallery", GALLERY_FALLBACK);
+
+  const galleryRows = bySection["gallery"];
+  const galleryItems: GalleryItem[] =
+    galleryRows && galleryRows.length
+      ? galleryRows.map((r) => ({ url: r.url, title: r.title }))
+      : GALLERY_FALLBACK.map((url) => ({ url, title: null }));
 
   return (
     <>
@@ -91,28 +97,7 @@ export default async function Products() {
                 </div>
 
                 <div className="lg:col-span-7">
-                  {imgs.length === 0 ? null : imgs.length === 1 ? (
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <Image src={imgs[0]} alt={p.title} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                      {imgs.map((src, i) => (
-                        <div
-                          key={`${src}-${i}`}
-                          className={`relative overflow-hidden ${i === 0 ? "col-span-2 row-span-2 aspect-[4/3]" : "aspect-square"}`}
-                        >
-                          <Image
-                            src={src}
-                            alt={`${p.title} ${i + 1}`}
-                            fill
-                            sizes={i === 0 ? "(max-width: 1024px) 66vw, 34vw" : "(max-width: 1024px) 33vw, 17vw"}
-                            className="object-cover"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <ProductImageCarousel images={imgs} alt={p.title} />
                 </div>
               </div>
             </div>
@@ -122,25 +107,42 @@ export default async function Products() {
 
       <section className="section bg-[#0b1322] text-white">
         <div className="container-x">
-          <span className="section-label !text-brand-300 before:!bg-brand-300">제품 갤러리</span>
-          <h2 className="mt-4 text-[28px] sm:text-[34px] font-bold tracking-[-0.02em] text-white">실제 가공·공급 사례</h2>
-          <p className="mt-5 text-[15px] text-white/75 leading-[1.75] max-w-2xl">
-            경우정밀에서 실제로 가공·공급한 제품 사진입니다.
-          </p>
-
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
-            {gallery.map((src, i) => (
-              <div key={`${src}-${i}`} className="relative aspect-square overflow-hidden bg-white/5 group">
-                <Image
-                  src={src}
-                  alt={`제품 사진 ${i + 1}`}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 17vw"
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-                />
-              </div>
-            ))}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+            <div>
+              <span className="section-label !text-brand-300 before:!bg-brand-300">제품 갤러리</span>
+              <h2 className="mt-4 text-[28px] sm:text-[34px] font-bold tracking-[-0.02em] text-white">실제 가공·공급 사례</h2>
+              <p className="mt-5 text-[15px] text-white/75 leading-[1.75] max-w-2xl">
+                경우정밀에서 실제로 가공·공급한 제품 사진입니다. 사진을 클릭하면 원본을 크게 볼 수 있습니다.
+              </p>
+            </div>
+            <Link
+              href="/products/gallery"
+              className="shrink-0 inline-flex items-center gap-2 self-start sm:self-auto rounded-full border border-white/25 px-5 py-2.5 text-[13.5px] font-semibold text-white hover:bg-white hover:text-[#0b1322] transition-colors"
+            >
+              전체 보기
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
+
+          <div className="mt-10">
+            <ProductGallery items={galleryItems.slice(0, 12)} dark />
+          </div>
+
+          {galleryItems.length > 12 && (
+            <div className="mt-8 text-center">
+              <Link
+                href="/products/gallery"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-[#0b1322] px-6 py-3 text-[14px] font-bold hover:opacity-90 transition-opacity"
+              >
+                사례 {galleryItems.length}건 전체 보기
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
     </>

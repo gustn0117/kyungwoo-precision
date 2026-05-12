@@ -39,6 +39,8 @@ export async function POST(req: NextRequest) {
   const file = form.get("file") as File | null;
   if (!file) return NextResponse.json({ error: "파일이 없습니다." }, { status: 400 });
 
+  const title = ((form.get("title") as string | null) || "").trim().slice(0, 120) || null;
+
   const ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
   const path = `${section}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
@@ -62,7 +64,7 @@ export async function POST(req: NextRequest) {
 
   const { data: inserted, error: insErr } = await sb
     .from("product_images")
-    .insert({ section, url: publicUrl(path), storage_path: path, sort: nextSort })
+    .insert({ section, url: publicUrl(path), storage_path: path, sort: nextSort, title })
     .select()
     .single();
   if (insErr) {
@@ -92,17 +94,32 @@ export async function DELETE(req: NextRequest) {
   return NextResponse.json({ ok: true });
 }
 
-/** 순서 변경 (json: password, section, order: number[] = id 배열) */
+/**
+ * PATCH:
+ *  - 순서 변경: { password, section, order: number[] }
+ *  - 제목 수정: { password, id, title }
+ */
 export async function PATCH(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
   if (!checkAuth(body.password))
     return NextResponse.json({ error: "비밀번호가 올바르지 않습니다." }, { status: 401 });
+
+  const sb = supabaseAdmin();
+
+  // 제목 수정
+  if (body.id !== undefined && body.title !== undefined) {
+    const id = Number(body.id);
+    const title = String(body.title).trim().slice(0, 120) || null;
+    const { error } = await sb.from("product_images").update({ title }).eq("id", id);
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ ok: true });
+  }
+
+  // 순서 변경
   const order: number[] = Array.isArray(body.order) ? body.order.map(Number) : [];
   const section: string = body.section;
   if (!section || order.length === 0)
     return NextResponse.json({ error: "잘못된 요청입니다." }, { status: 400 });
-
-  const sb = supabaseAdmin();
   for (let i = 0; i < order.length; i++) {
     const { error } = await sb
       .from("product_images")

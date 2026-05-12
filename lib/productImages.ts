@@ -4,6 +4,7 @@ export type ProductImage = {
   id: number;
   section: string;
   url: string;
+  title: string | null;
   storage_path: string | null;
   sort: number;
 };
