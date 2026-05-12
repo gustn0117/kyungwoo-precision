@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase, SUPABASE_URL } from "@/lib/supabase";
+import { supabasePublic, SUPABASE_URL } from "@/lib/supabase";
 import { getProductImagesBySection } from "@/lib/productImages";
 
 export const dynamic = "force-dynamic";
@@ -10,7 +10,7 @@ export async function GET() {
   out.anonKeyLen = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "").length;
   out.srKeyLen = (process.env.SUPABASE_SERVICE_ROLE_KEY || "").length;
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabasePublic()
       .from("product_images")
       .select("id,section,url,title")
       .limit(5);

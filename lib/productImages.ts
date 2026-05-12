@@ -1,4 +1,5 @@
-import { supabase } from "./supabase";
+import { unstable_noStore as noStore } from "next/cache";
+import { supabasePublic } from "./supabase";
 
 export type ProductImage = {
   id: number;
@@ -13,8 +14,9 @@ export type ProductImage = {
 export async function getProductImagesBySection(): Promise<
   Record<string, ProductImage[]>
 > {
+  noStore();
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabasePublic()
       .from("product_images")
       .select("*")
       .order("section", { ascending: true })
