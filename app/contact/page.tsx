@@ -69,7 +69,7 @@ export default function Contact() {
                 {SITE.contact.phone}
               </a>
               <div className="mt-1.5 text-[13px] text-white/75">
-                평일 08:30 - 18:00 (점심 12:00 - 13:00)
+                평일 07:30 - 16:40 (점심 11:40 - 12:30)
               </div>
               <div className="mt-4 pt-4 border-t border-white/20 space-y-1.5 text-[13.5px]">
                 <div><span className="opacity-70">담당자</span> {SITE.contact.manager}</div>

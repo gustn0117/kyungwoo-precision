@@ -6,14 +6,23 @@ import ProcessFlow from "@/components/ProcessFlow";
 import EquipmentPreview from "@/components/EquipmentPreview";
 import QualitySection from "@/components/QualitySection";
 import CTASection from "@/components/CTASection";
+import { getProductImagesBySection } from "@/lib/productImages";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const bySection = await getProductImagesBySection();
+  const featuredImages: Record<string, string[]> = {};
+  for (const [section, rows] of Object.entries(bySection)) {
+    featuredImages[section] = rows.map((r) => r.url);
+  }
+
   return (
     <>
       <Hero />
       <StrengthCards />
       <CompanyOverview />
-      <FeaturedProducts />
+      <FeaturedProducts images={featuredImages} />
       <ProcessFlow />
       <EquipmentPreview />
       <QualitySection />

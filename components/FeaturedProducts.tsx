@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PRODUCT_CATEGORIES } from "@/lib/site";
 
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ images }: { images?: Record<string, string[]> }) {
   return (
     <section className="section bg-slate-50 border-y border-slate-200">
       <div className="container-x">
@@ -30,7 +30,7 @@ export default function FeaturedProducts() {
               className="group relative block aspect-[3/4] overflow-hidden bg-slate-900"
             >
               <Image
-                src={p.images[0]}
+                src={images?.[p.id]?.[0] ?? p.images[0]}
                 alt={p.title}
                 fill
                 sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"

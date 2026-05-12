@@ -8,7 +8,7 @@ export const SITE = {
   ceo: "최양수",
   employees: 33,
   equipmentCount: 38,
-  equipmentBreakdown: "CNC 13 · MCT 8 · 연마 6 · 기타 11",
+  equipmentBreakdown: "CNC 13 · MCT 8 · 연마 6 · 용접기 외 10",
   yearsLabel: "33년",
   business: "CNC/MCT/선반 기계가공 (차체 용접치구, 검사구, 산업용 기계부품)",
   address: {
@@ -21,7 +21,7 @@ export const SITE = {
     phone: "031-319-1983",
     mobile: "010-3116-2504",
     fax: "031-319-1984",
-    email: "dragonbus1@naver.com",
+    email: "kyungwoo213@hanmail.net",
     kakaoUrl: "#",
   },
 } as const;
@@ -41,9 +41,9 @@ export const NAV = [
     label: "제품정보",
     href: "/products",
     children: [
-      { label: "자동차 지그", href: "/products#auto-jig" },
-      { label: "샤프트", href: "/products#shaft" },
-      { label: "다웰핀/로케이션핀", href: "/products#dowel-pin" },
+      { label: "자동차 용접 지그 표준품", href: "/products#auto-jig" },
+      { label: "샤프트 / 환봉 가공품", href: "/products#shaft" },
+      { label: "다웰핀 / 로케이션핀", href: "/products#dowel-pin" },
       { label: "MCT 형상 가공품", href: "/products#mct-form" },
       { label: "제관물 / 브라켓트", href: "/products#bracket" },
       { label: "정밀 기계 부품", href: "/products#precision-parts" },
@@ -54,9 +54,9 @@ export const NAV = [
     href: "/equipment",
     children: [
       { label: "설비 보유 현황", href: "/equipment#machines" },
-      { label: "측정기 보유 현황", href: "/equipment#measuring" },
-      { label: "후처리 - 열처리", href: "/equipment#heat" },
+      { label: "후처리 - 열처리 / 도금 / 착색", href: "/equipment#heat" },
       { label: "후처리 - 연마", href: "/equipment#grinding" },
+      { label: "측정기 보유 현황", href: "/equipment#measuring" },
     ],
   },
   {
@@ -207,19 +207,20 @@ export const ORG_CHART = [
   { dept: "CNC부", count: 11, tasks: ["CNC 가공 담당", "야간 CNC / MCT 품질관리"] },
   { dept: "MCT부", count: 7, tasks: ["MCT 가공 담당"] },
   { dept: "제관부", count: 3, tasks: ["서브 / 브라켓트 및 제관물 용접", "공작물 절단"] },
-  { dept: "수동선반부", count: 5, tasks: ["수동선반 및 밀링 가공 담당"] },
+  { dept: "범용선반부", count: 5, tasks: ["범용선반 및 밀링 가공 담당"] },
   { dept: "연마부", count: 4, tasks: ["열처리 및 연마 담당", "최종 품질 확인", "제품 포장 및 출고"] },
 ] as const;
 
 /* 핵심 사업 영역 */
 export const CORE_BUSINESS = [
   "CNC / MCT 정밀 가공",
-  "수동 선반 / 밀링 가공",
-  "차체 용접치구·검사구 제작",
-  "산업용 기계부품 가공",
+  "범용 선반 / 밀링 가공",
+  "차체 용접치구·검사구 부품 제작",
+  "정밀 기계부품 가공",
   "원통·평면 연마 (사내)",
   "열처리·도금 (협력사 일괄 관리)",
   "ZEISS 3차원 측정·검사",
+  "CO₂ 용접 / 아르곤 용접",
 ] as const;
 
 /* 연혁 */
@@ -248,13 +249,13 @@ export const COMPANY_HISTORY = [
       { y: "2008", t: "원통연마·평면연마 사내 라인 구축 (총 6대)" },
       { y: "2005", t: "자가 공장 매입 — 현 시화공단 사옥 입주" },
       { y: "2005", t: "시화공단 내 협력 열처리·도금사와 장기 파트너십 체결" },
-      { y: "2002", t: "CNC 선반 양산 라인 확장" },
+      { y: "2002", t: "CNC·MCT 라인 확장" },
     ],
   },
   {
     decade: "1990s",
     items: [
-      { y: "1998", t: "차체 용접치구·검사구 정규 부품 공급" },
+      { y: "1998", t: "차체 용접치구·검사구 STD 부품 공급" },
       { y: "1995", t: "산업용 기계부품 가공 사업 본격 진출" },
       { y: "1993.03", t: "경우정밀 설립 (대표 최양수)" },
     ],
@@ -274,6 +275,6 @@ export const CNC_CATALOG = [
 export const MCT_CATALOG = [
   { src: "/equipment/catalog/mct-mynx6500.png", name: "DOOSAN MYNX 6500 / 50" },
   { src: "/equipment/catalog/mct-mynx5400ii.png", name: "DOOSAN MYNX 5400 II" },
-  { src: "/equipment/catalog/mct-lcv6700.png", name: "DOOSAN LCV 6700" },
+  { src: "/equipment/catalog/mct-lcv6700.png", name: "SMEC LCV6700" },
   { src: "/equipment/catalog/mct-nhm8000-horizontal.png", name: "DOOSAN NHM 8000 — 호리젠탈 MCT" },
 ] as const;

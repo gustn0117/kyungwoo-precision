@@ -45,7 +45,7 @@ export default function CompanyOverview() {
             <span className="text-brand">절대 준수의 33년</span>
           </h2>
           <p className="section-desc">
-            경우정밀은 1993년 설립 이래 CNC·머시닝·수동선반·밀링을 활용해
+            경우정밀은 1993년 설립 이래 CNC·머시닝·범용 선반·밀링을 활용해
             차체 지그·검사구·산업용 기계 부품을 가공·제작해 온 정밀가공 전문기업입니다.
             소재 절단부터 열처리·연마까지 제품을 완가공하는 종합 가공업체로서,
             제품의 품질과 납기를 절대 준수하고 합리적인 가격으로 공급합니다.

@@ -45,8 +45,8 @@ export default function Location() {
             <div className="border-t border-slate-200 pt-5">
               <div className="text-[12px] font-semibold text-brand">운영 시간</div>
               <ul className="mt-2.5 space-y-1.5 text-[13.5px]">
-                <li><span className="text-ink-muted w-24 inline-block">평일</span> <span className="font-semibold text-ink">08:30 - 18:00</span></li>
-                <li><span className="text-ink-muted w-24 inline-block">점심</span> <span className="text-ink-soft">12:00 - 13:00</span></li>
+                <li><span className="text-ink-muted w-24 inline-block">평일</span> <span className="font-semibold text-ink">07:30 - 16:40</span></li>
+                <li><span className="text-ink-muted w-24 inline-block">점심</span> <span className="text-ink-soft">11:40 - 12:30</span></li>
                 <li><span className="text-ink-muted w-24 inline-block">토·일·공휴일</span> <span className="text-ink-soft">휴무</span></li>
               </ul>
             </div>

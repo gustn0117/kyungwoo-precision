@@ -33,7 +33,7 @@ export default function Greeting() {
               모든 분들께 진심으로 감사드립니다.
             </p>
             <p>
-              저희 경우정밀은 1993년 설립 이래 33년 동안 CNC·머시닝·수동 선반·밀링을 활용해
+              저희 경우정밀은 1993년 설립 이래 33년 동안 CNC·머시닝·범용 선반·밀링을 활용해
               차체 용접치구, 검사구, 산업용 기계부품 등을 가공·제작해 온
               <strong className="text-ink font-semibold"> 정밀가공 외길의 전문기업</strong>입니다.
             </p>

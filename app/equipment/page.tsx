@@ -16,8 +16,8 @@ export const metadata = {
 };
 
 const MANUAL_IMGS = [
-  { src: "/equipment/horizontal-lathe-1.jpg", label: "수동 선반" },
-  { src: "/equipment/horizontal-lathe-2.jpg", label: "수동 선반" },
+  { src: "/equipment/horizontal-lathe-1.jpg", label: "범용 선반" },
+  { src: "/equipment/horizontal-lathe-2.jpg", label: "범용 선반" },
   { src: "/equipment/horizontal-lathe-3.jpg", label: "범용 밀링" },
   { src: "/equipment/horizontal-lathe-4.jpg", label: "범용 밀링" },
 ];
@@ -25,7 +25,6 @@ const GRIND_IMGS = [
   { src: "/equipment/grinder-flat.jpg", label: "평면 연마기" },
   { src: "/process/grinding-1.jpg", label: "원통 연마 작업" },
   { src: "/process/grinding-2.jpg", label: "정밀 연마 작업" },
-  { src: "/process/grinding-3.jpg", label: "연마 후 검사" },
 ];
 
 export default function Equipment() {
@@ -129,30 +128,20 @@ export default function Equipment() {
         items={MCT_CATALOG}
       />
 
-      {/* 수동 선반 / 범용 밀링 — 현장 사진 */}
+      {/* 범용 선반 / 범용 밀링 — 현장 사진 */}
       <PhotoBlock
-        eyebrow="수동 선반 / 범용 밀링"
-        title="수동 선반 / 범용 밀링 (각 4대)"
-        desc="다품종 소량 생산에 최적화된 수동 가공 라인. 양산 기계로는 대응이 어려운 시제품·소량 품목과 CNC·MCT 보조 작업까지 유연하게 대응합니다."
+        eyebrow="범용 선반 / 범용 밀링"
+        title="범용 선반 / 범용 밀링 (각 4대)"
+        desc="다품종 소량 생산에 최적화된 범용 가공 라인. 양산 기계로는 대응이 어려운 시제품·소량 품목과 CNC·MCT 보조 작업까지 유연하게 대응합니다."
         bg="bg-white"
         imgs={MANUAL_IMGS}
       />
 
-      {/* 원통 / 평면 연마기 — 현장 사진 */}
-      <PhotoBlock
-        id="grinding"
-        eyebrow="연마"
-        title="원통 / 평면 연마기 (각 3대)"
-        desc="가공·열처리 후의 수치 변화 보정과 거칠기 정밀 가공을 위한 사내 연마 라인. 후처리 외주 없이 즉시 연마하여 납기를 단축합니다."
-        bg="bg-slate-50 border-y border-slate-200"
-        imgs={GRIND_IMGS}
-      />
-
-      {/* 후처리 — 열처리 / 도금 */}
-      <section id="heat" className="section bg-white scroll-mt-[80px] lg:scroll-mt-[120px]">
+      {/* 후처리 — 열처리 / 도금 / 착색 */}
+      <section id="heat" className="section bg-slate-50 border-y border-slate-200 scroll-mt-[80px] lg:scroll-mt-[120px]">
         <div className="container-x">
           <span className="section-label">후처리</span>
-          <h2 className="section-title">후처리 — 열처리 / 도금 / 도색</h2>
+          <h2 className="section-title">후처리 — 열처리 / 도금 / 착색</h2>
           <p className="section-desc">
             시화공단 내 위치한 협력 열처리·도금사와 20년 이상 협력관계를 유지하여, 신속하고 안정적인 후처리 공정을 제공합니다.
           </p>
@@ -173,11 +162,21 @@ export default function Equipment() {
 
           <div className="mt-8 grid sm:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
             <SpecCard k="열처리" v="진공 / 질화 / TD / 고주파 / 침탄" />
-            <SpecCard k="도금" v="TIN코팅 / 크롬 / 무전해 / 아연 / 착색" />
-            <SpecCard k="도색" v="흑착색 / 천연색" />
+            <SpecCard k="도금" v="TIN코팅 / CR도금 / 무전해 / 아연도금 / 착색" />
+            <SpecCard k="착색" v="흑착색 / 천연색" />
           </div>
         </div>
       </section>
+
+      {/* 원통 / 평면 연마기 — 현장 사진 */}
+      <PhotoBlock
+        id="grinding"
+        eyebrow="연마"
+        title="원통 / 평면 연마기 (각 3대)"
+        desc="가공·열처리 후의 수치 변화 보정과 거칠기 정밀 가공을 위한 사내 연마 라인. 후처리 외주 없이 즉시 연마하여 납기를 단축합니다."
+        bg="bg-white"
+        imgs={GRIND_IMGS}
+      />
 
       {/* 측정기 보유 현황 */}
       <section id="measuring" className="section bg-slate-50 border-t border-slate-200 scroll-mt-[80px] lg:scroll-mt-[120px]">
