@@ -190,7 +190,7 @@ export default function Equipment() {
           <div className="mt-10 grid lg:grid-cols-12 gap-5">
             <div className="lg:col-span-7 relative overflow-hidden">
               <div className="relative aspect-[16/10]">
-                <Image src="/equipment/horizontal-lathe-1.jpg" alt="ZEISS 3차원 측정기" fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover" />
+                <Image src="/equipment/measuring-cmm.png" alt="ZEISS 3차원 측정기" fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b1322]/90 via-[#0b1322]/25 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 text-white">
                   <div className="inline-block bg-brand px-2 py-0.5 text-[10px] font-bold tracking-[0.16em]">대표 측정장비</div>
