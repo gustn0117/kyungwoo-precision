@@ -11,8 +11,8 @@ export default function Greeting() {
       <div className="container-x grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         <div className="lg:col-span-5 relative aspect-[4/5] overflow-hidden">
           <Image
-            src="/factory/horizontal-mct.jpg"
-            alt="경우정밀 작업 현장"
+            src="/factory/horizontal-mct-greeting.jpg"
+            alt="경우정밀 호리젠탈 MCT"
             fill
             sizes="(max-width: 1024px) 100vw, 42vw"
             className="object-cover"

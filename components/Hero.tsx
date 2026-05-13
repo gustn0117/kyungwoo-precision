@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const SLIDES = [
-  { src: "/equipment/cnc-lathe-2.jpg", alt: "CNC 정밀 가공" },
-  { src: "/equipment/mct-3.jpg", alt: "MCT 머시닝 가공" },
-  { src: "/factory/horizontal-mct.jpg", alt: "호리젠탈 머시닝 센터" },
-  { src: "/equipment/grinder-flat.jpg", alt: "평면 연마" },
+  { src: "/main/hero-1.png", alt: "경우정밀 가공 현장 1" },
+  { src: "/main/hero-2.png", alt: "경우정밀 가공 현장 2" },
+  { src: "/main/hero-3.png", alt: "경우정밀 가공 현장 3" },
+  { src: "/main/hero-4.png", alt: "경우정밀 가공 현장 4" },
 ];
 
 export default function Hero() {

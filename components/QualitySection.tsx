@@ -5,31 +5,13 @@ export default function QualitySection() {
   return (
     <section className="section bg-white">
       <div className="container-x grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-        <div className="lg:col-span-7 grid grid-cols-6 gap-2 sm:gap-3">
-          <div className="col-span-4 row-span-2 relative aspect-[4/3] overflow-hidden">
+        <div className="lg:col-span-7">
+          <div className="relative aspect-[4/3] overflow-hidden">
             <Image
-              src="/equipment/horizontal-lathe-1.jpg"
-              alt="ZEISS 3차원 측정 환경"
+              src="/process/measuring-room.png"
+              alt="ZEISS 3차원 측정실"
               fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="col-span-2 relative aspect-square overflow-hidden">
-            <Image
-              src="/process/grinding-1.jpg"
-              alt="정밀 연마"
-              fill
-              sizes="200px"
-              className="object-cover"
-            />
-          </div>
-          <div className="col-span-2 relative aspect-square overflow-hidden">
-            <Image
-              src="/equipment/mct-4.jpg"
-              alt="MCT 가공"
-              fill
-              sizes="200px"
+              sizes="(max-width: 1024px) 100vw, 58vw"
               className="object-cover"
             />
           </div>

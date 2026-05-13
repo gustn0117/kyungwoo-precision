@@ -4,7 +4,7 @@ import { EQUIPMENT_LIST } from "@/lib/site";
 
 const SHOWCASE = [
   { src: "/equipment/cnc-lathe-2.jpg", label: "CNC 선반", count: 13 },
-  { src: "/equipment/mct-2.jpg", label: "머시닝 센터 (수직 7 + 호리 1)", count: 8 },
+  { src: "/equipment/machining-center-main.jpg", label: "머시닝 센터 (수직 7 + 호리 1)", count: 8 },
   { src: "/equipment/horizontal-lathe-3.jpg", label: "범용 선반·밀링", count: 8 },
   { src: "/equipment/grinder-flat.jpg", label: "연마기 (원통 3 + 평면 3)", count: 6 },
 ];
