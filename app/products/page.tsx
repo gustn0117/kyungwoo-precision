@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
-import ProductImageCarousel from "@/components/ProductImageCarousel";
+import ProductImageCarousel, { CarouselImage } from "@/components/ProductImageCarousel";
 import ProductGallery, { GalleryItem } from "@/components/ProductGallery";
 import { PRODUCT_CATEGORIES } from "@/lib/site";
 import { getProductImagesBySection } from "@/lib/productImages";
@@ -23,9 +23,11 @@ const GALLERY_FALLBACK = [
 export default async function Products() {
   const bySection = await getProductImagesBySection();
 
-  const imagesFor = (id: string, fallback: readonly string[]) => {
+  const imagesFor = (id: string, fallback: readonly string[]): CarouselImage[] => {
     const rows = bySection[id];
-    return rows && rows.length ? rows.map((r) => r.url) : [...fallback];
+    return rows && rows.length
+      ? rows.map((r) => ({ url: r.url, title: r.title }))
+      : fallback.map((url) => ({ url, title: null }));
   };
 
   const galleryRows = bySection["gallery"];
